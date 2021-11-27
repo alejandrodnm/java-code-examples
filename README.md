@@ -14,6 +14,8 @@ This is a collection of code examples for different topics.
 - **Http**: using the java `HttpClient` and testing with
   [mock-server][mockserver].
 
+- **Streams**: mostly a map reduce example.
+
 [dessignPatterns1]: https://ronnieschaniel.medium.com/object-oriented-design-patterns-explained-using-practical-examples-84807445b092
 [dessignPatterns2]: http://www.vishalchovatiya.com/category/design-patterns/
 [baeldungConcurrency]: https://www.baeldung.com/java-concurrency

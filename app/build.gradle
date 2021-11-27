@@ -41,7 +41,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'designpatterns.App'
+    mainClass = 'codeexamples.App'
 }
 
 tasks.named('test') {
