@@ -27,13 +27,17 @@ public class DbManagerTest {
   @BeforeAll
   public static void createDb() throws SQLException, IOException {
 
+    DbManager.migrateDb(
+        postgreSQLContainer.getJdbcUrl(),
+        postgreSQLContainer.getUsername(),
+        postgreSQLContainer.getPassword());
+
     dbManager =
         new DbManager(
             postgreSQLContainer.getJdbcUrl(),
             postgreSQLContainer.getUsername(),
             postgreSQLContainer.getPassword(),
             postgreSQLContainer.getDriverClassName());
-    dbManager.createDb();
   }
 
   @Test

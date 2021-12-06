@@ -10,6 +10,7 @@ This is a collection of code examples for different topics.
 
 - **Database**: using [HikariCP][hikari] with [jooq][jooq] and testing with
   [jUnit5][junit5] and [testcontainers][testcontainers].
+  [Flyway][flyway] database migrations by running `./gradlew flywayMigrate`.
 
 - **Http**: using the java `HttpClient` and testing with
   [mock-server][mockserver].
@@ -24,3 +25,4 @@ This is a collection of code examples for different topics.
 [testcontainers]: https://www.testcontainers.org/
 [junit5]: https://junit.org/junit5/
 [mockserver]: https://mock-server.com/
+[flyway]: https://flywaydb.org/

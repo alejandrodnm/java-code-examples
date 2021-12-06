@@ -4,23 +4,19 @@
 package codeexamples.jooq.tables;
 
 
-import codeexamples.jooq.Keys;
 import codeexamples.jooq.Public;
 import codeexamples.jooq.tables.records.UsersRecord;
 
-import java.time.OffsetDateTime;
-import java.util.UUID;
-
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row3;
+import org.jooq.Row2;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
-import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
@@ -50,17 +46,12 @@ public class Users extends TableImpl<UsersRecord> {
     /**
      * The column <code>public.users.id</code>.
      */
-    public final TableField<UsersRecord, UUID> ID = createField(DSL.name("id"), SQLDataType.UUID.nullable(false).defaultValue(DSL.field("uuid_generate_v4()", SQLDataType.UUID)), this, "");
+    public final TableField<UsersRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.users.name</code>.
      */
-    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(128).nullable(false), this, "");
-
-    /**
-     * The column <code>public.users.created_at</code>.
-     */
-    public final TableField<UsersRecord, OffsetDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6).nullable(false).defaultValue(DSL.field("now()", SQLDataType.TIMESTAMPWITHTIMEZONE)), this, "");
+    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), SQLDataType.CLOB, this, "");
 
     private Users(Name alias, Table<UsersRecord> aliased) {
         this(alias, aliased, null);
@@ -101,8 +92,8 @@ public class Users extends TableImpl<UsersRecord> {
     }
 
     @Override
-    public UniqueKey<UsersRecord> getPrimaryKey() {
-        return Keys.PK_ID_ON_USERS;
+    public Identity<UsersRecord, Integer> getIdentity() {
+        return (Identity<UsersRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -132,11 +123,11 @@ public class Users extends TableImpl<UsersRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row2 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<UUID, String, OffsetDateTime> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row2<Integer, String> fieldsRow() {
+        return (Row2) super.fieldsRow();
     }
 }

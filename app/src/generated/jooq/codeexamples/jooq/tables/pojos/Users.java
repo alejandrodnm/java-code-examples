@@ -5,8 +5,6 @@ package codeexamples.jooq.tables.pojos;
 
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
-import java.util.UUID;
 
 
 /**
@@ -17,30 +15,26 @@ public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final UUID           id;
-    private final String         name;
-    private final OffsetDateTime createdAt;
+    private final Integer id;
+    private final String  name;
 
     public Users(Users value) {
         this.id = value.id;
         this.name = value.name;
-        this.createdAt = value.createdAt;
     }
 
     public Users(
-        UUID           id,
-        String         name,
-        OffsetDateTime createdAt
+        Integer id,
+        String  name
     ) {
         this.id = id;
         this.name = name;
-        this.createdAt = createdAt;
     }
 
     /**
      * Getter for <code>public.users.id</code>.
      */
-    public UUID getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -51,20 +45,12 @@ public class Users implements Serializable {
         return this.name;
     }
 
-    /**
-     * Getter for <code>public.users.created_at</code>.
-     */
-    public OffsetDateTime getCreatedAt() {
-        return this.createdAt;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Users (");
 
         sb.append(id);
         sb.append(", ").append(name);
-        sb.append(", ").append(createdAt);
 
         sb.append(")");
         return sb.toString();
