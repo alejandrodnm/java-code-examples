@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -16,7 +16,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public class DbManagerTest {
 
   @Container
-  private static PostgreSQLContainer postgreSQLContainer =
+  /**
+   * Making it static will reuse the same container for all the tests, in this case `createDb`
+   * should be made static and decorated with `BeforeAll`
+   */
+  private PostgreSQLContainer postgreSQLContainer =
       new PostgreSQLContainer("postgres:12.4")
           .withDatabaseName("db_test")
           .withUsername("db_admin")
@@ -24,8 +28,8 @@ public class DbManagerTest {
 
   private static DbManager dbManager;
 
-  @BeforeAll
-  public static void createDb() throws SQLException, IOException {
+  @BeforeEach
+  public void createDb() {
 
     DbManager.migrateDb(
         postgreSQLContainer.getJdbcUrl(),

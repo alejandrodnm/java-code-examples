@@ -37,7 +37,7 @@ dependencies {
     implementation "org.postgresql:postgresql:42.3.1"
     implementation "com.google.dagger:dagger:2.40.2"
     implementation "org.flywaydb:flyway-core:${project['flyway.version']}"
-
+    implementation "io.github.resilience4j:resilience4j-all:${project['resilience4j.version']}"
 
     jooqGenerator "org.postgresql:postgresql:42.3.1"
 }
